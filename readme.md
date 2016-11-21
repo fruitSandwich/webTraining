@@ -2,9 +2,11 @@
 ## 1.[前端历史趋势简介以及开发环境工具的准备](./lession01/lession01.md)
 - 历史和趋势
 - 开发环境工具准备
+
 ## 2.HTML、CSS基础
 - HTML基础 
 - CSS 基础
+
 ## 3.javascript基础
 - JavaScript介绍
 - JavaScript语法
@@ -15,9 +17,11 @@
 - BOM、浏览器环境
 - Web API
 - Jquery
+
 ## 4.React技术栈
 - React基本用法
 - React生态中常见的应用架构
+
 ## 5.前端工程
 - 持续集成
 - 静态代码检查
