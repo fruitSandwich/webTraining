@@ -13,6 +13,7 @@
 1. 下载并安装Chrome浏览器、WebStorm IDE、git；注册GitHub账号
 2. 使用git将示例下载到本地，用webStorm打开项目lession01编辑index.js使demo03.html中文本框获得焦点时弹出提示
 3. 使用GitHub账户fork https://github.com/fruitSandwich/webTraining.git 将更改的lession01提交
+4. 使用GitHub Pages生成web可访问的页面（如下所示），具体操作参考：https://pages.github.com/
 
 在线示例：
 - https://fruitsandwich.github.io/webTraining/lession01/demo1.html

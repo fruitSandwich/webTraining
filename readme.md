@@ -29,7 +29,7 @@
 - 功能测试
 
 ## 参考教材：
-1. 全栈工程师培训材料【阮一峰】https://github.com/ruanyf/jstraining
+1. W3CSchool http://www.w3school.com.cn/
 2. Web开发入门【MDN】https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web
 3. JavaScript 标准参考教程【阮一峰】http://javascript.ruanyifeng.com/
-4. W3CSchool http://www.w3school.com.cn/
+4. 全栈工程师培训材料【阮一峰】https://github.com/ruanyf/jstraining
