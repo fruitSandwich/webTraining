@@ -178,7 +178,7 @@ CSS 规则由两个主要的部分构成：选择器，以及一条或多条声�
 
 下面的示意图为您展示了上面这段代码的结构：
 
-![image](http://www.w3school.com.cn/i/ct_css_selector.gif)
+![image](./css_selector.png)
 
 ---
 
@@ -380,7 +380,7 @@ B ~ E |	B元素后面的拥有共同父元素的兄弟元素E
 ## 2.5 盒模型
 &emsp;&emsp;当你的浏览器展现一个元素时，这个元素会占据一定的空间。这个空间由四部分组成。中间是元素呈现内容的区域。这个区域的外面是内边距。再外面是边框。最外面的是外边距，外边距将该元素与其它元素分开。
 
-![image](http://www.w3school.com.cn/i/ct_boxmodel.gif)
+![image](./css_box.png)
 
 &emsp;&emsp;元素框的最内部分是实际的内容，直接包围内容的是内边距。内边距呈现了元素的背景。内边距的边缘是边框。边框以外是外边距，外边距默认是透明的，因此不会遮挡其后的任何元素。
 
@@ -394,7 +394,7 @@ B ~ E |	B元素后面的拥有共同父元素的兄弟元素E
 ```
 &emsp;&emsp;假设框的每个边上有 10 个像素的外边距和 5 个像素的内边距。如果希望这个元素框达到 100 个像素，就需要将内容的宽度设置为 70 像素，请看下图：
 
-![image](http://www.w3school.com.cn/i/ct_css_boxmodel_example.gif)
+![image](./css_box2.png)
 
 ```
 #box {
