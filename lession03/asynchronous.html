@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript异步</title>
+    <script src="./jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+
+<div>
+    <code>
+        var r = asyncUrl('./frontenddevhandbook.pdf');
+        console.log(r);
+    </code>
+
+
+    <button onclick="invokeAsync()">同步调用</button>
+</div>
+
+<div>
+    <code>
+        var r = $.get('./frontenddevhandbook.pdf');
+        console.log(r);
+    </code>
+
+
+    <button onclick="invokeSync()">异步调用</button>
+</div>
+
+<button onclick="alert('i\'m alert!')">open alert</button>
+<button onclick="invokeOpen()">打开百度</button>
+<button onclick="console.log('hello')">打印日志</button>
+
+<script>
+
+    $(function () {
+        $.ajaxSetup({
+            cache: false //关闭AJAX缓存
+        });
+    });
+
+    function invokeOpen() {
+        open('http://www.baidu.com')
+    }
+
+    function invokeAsync() {
+        var r = asyncUrl('./frontenddevhandbook.pdf');
+        console.log(r);
+    }
+
+    function invokeSync() {
+        var r = $.get('./frontenddevhandbook.pdf');
+        console.log(r);
+    }
+
+    function asyncUrl(url) {
+        return $.ajax({
+            url: url,
+            async: false
+        });
+    }
+
+</script>
+
+</body>
+</html>

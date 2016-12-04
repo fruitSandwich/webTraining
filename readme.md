@@ -7,13 +7,14 @@
 - HTML基础
 - CSS 基础
 
-## 3.javascript介绍和基本概念
+## 3.[javascript介绍和基本概念](./lession03/lession03.md)
 - javascript简介
+- javascript的诞生
 - javascript的历史变迁和ECMAScript
-- javascript语言核心概念
+- javascript和其他主流编程语言的区别
+- javascript单线程、异步和event loop
 
 ## 4.javascript语法和标准库
-- JavaScript介绍
 - JavaScript语法
 - JavaScript标准库
 
@@ -25,7 +26,7 @@
 - DOM模型
 - BOM、浏览器环境
 - Web API
-- Jquery
+- jQuery
 
 ## 7.React技术栈
 - React基本用法

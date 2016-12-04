@@ -1,29 +1,14 @@
 # javascript介绍及基本概念
 > JavaScript是一种轻量级的脚本语言。所谓“脚本语言”，指的是它不具备开发操作系统的能力，而是只用来编写控制其他大型应用程序的“脚本”。
 
-## 1.引言
+## 1.简介
  &emsp;&emsp;JavaScript 堪称[世界上被人误解最深的编程语言](http://javascript.crockford.com/javascript.html)。虽然常被嘲为“玩具语言”，但在它看似简洁的外衣下，还隐藏着强大的语言特性。 JavaScript 目前广泛应用于众多知名应用中，对于网页和移动开发者来说，JavaScript十分重要。
 
- &emsp;&emsp;JavaScript是一种嵌入式（embedded）语言。它本身提供的核心语法，规模相当小，只能用来做一些数学和逻辑运算。JavaScript本身不提供任何与I/O（输入/输出）相关的API，都要靠宿主环境（host）提供，所以JavaScript只合适嵌入更大型的应用程序环境，去调用宿主环境提供的底层API。
+ &emsp;&emsp;JavaScript是一种嵌入式（embedded）语言。它本身提供的核心语法，规模相当小，只能用来做一些数学和逻辑运算。JavaScript本身不提供任何与I/O（输入/输出）相关的API，都要靠宿主环境（host）提供，任何与外界沟通的机制都是由宿主环境提供的。
 
- &emsp;&emsp;目前，已经嵌入JavaScript的宿主环境有多种，最常见的环境就是浏览器，另外还有服务器环境，也就是Node项目。
+ &emsp;&emsp;浏览器是最常见的宿主环境，但在非常多的其他程序中也包含 JavaScript 解释器，如 Adobe Acrobat、Photoshop、SVG 图像、Yahoo! 的 Widget 引擎，以及 Node.js 之类的服务器端环境。JavaScript 的实际应用远不止这些，除此之外还有 NoSQL 数据库（如开源的 Apache CouchDB）、嵌入式计算机，以及包括 GNOME （注：GNU/Linux 上最流行的 GUI 之一）在内的桌面环境等等。
 
-
-
-```
-graph TB
-javaScript-->核心语法及标准ECMAScript
-javaScript-->javascript宿主环境
-
-核心语法及标准ECMAScript--> ECMAScript3
-核心语法及标准ECMAScript--> ECMAScript5
-核心语法及标准ECMAScript--> ECMAScript2016
-
-
-javascript宿主环境-->各种浏览器
-javascript宿主环境-->服务端-node等
-javascript宿主环境-->移动端-ReactNative和PhoneGap等
-```
+![image](./javascript.png)
 
 ## 2.javascript的诞生
 
@@ -63,7 +48,7 @@ Netscape公司的这种浏览器脚本语言，最初名字叫做Mocha，1995年
 1996年3月，Navigator 2.0浏览器正式内置了JavaScript脚本语言。
 
 
-## 3.javascript诞生后的历史变迁和ECMAScript
+## 3.javascript的历史变迁和ECMAScript
 
 Netscape推出javascript的几个月之后，微软模仿JavaScript开发了一种相近的语言，取名为JScript（JavaScript是Netscape的注册商标，微软不能用），首先内置于IE 3.0。Netscape公司面临丧失浏览器脚本语言的主导权的局面。
 
@@ -103,3 +88,76 @@ javascript标准化后的版本变迁
 2015年6月，ECMAScript 6正式发布，并且更名为“ECMAScript 2015”。这是因为TC39委员会计划，以后每年发布一个ECMAScirpt的版本。
 
 2016年6月，《ECMAScript 2016 标准》发布。与前一年发布的版本相比，它只增加了两个较小的特性。
+
+## 4 javascript和其他主流编程语言的区别
+### 4.1 解释型
+
+  C、C++等需要通过编译器（compiler）将源代码编译成机器码，之后才能执行的语言。一般需经过编译（compile）、链接（linker）这两个步骤。编译是把源代码编译成机器码，链接是把各个模块的机器码和依赖库串连起来生成可执行文件。
+
+  Java、C#是半编译半解释型语言，先编译成中间码再由虚拟机或运行库执行。
+
+  JavaScript语言是完全解释性语言。不需要编译，在运行时由解释器直接执行。
+
+### 4.2 动态类型
+
+  Java、C、C++是静态类型语言。数据类型是在编译期进行检查的，也就是说变量在使用前要声明变量的数据类型，这样的好处是把类型检查放在编译期，提前检查可能出现的类型错误。
+
+  javascript是动态类型语言。在运行期进行类型检查的语言，也就是在编写代码的时候可以不指定变量的数据类型。
+
+### 4.3 弱类型
+
+  Java、C#等是强类型语言。一个变量不经过强制转换，它永远是这个数据类型，不允许隐式的类型转换。举个例子：如果你定义了一个double类型变量a,不经过强制类型转换那么程序int b = a无法通过编译。
+
+  javascript是弱类型语言。允许编译器进行隐式的类型转换。这一点C、C++也是如此。
+
+  ![image](./langulageType.png)
+
+### 4.4 基于原型的面向对象
+
+  Java、C++和C#是基于类的面向对象语言，是构建在两个不同实体的概念之上的：类和实例。
+
+  - 类（class）：定义了所有用于具有某一组特征对象的属性（可以将 Java 中的方法和变量以及 C++ 中的成员都视作属性）。类是抽象的事物，而不是其所描述的全部对象中的任何特定的个体。例如 Employee 类可以用来表示所有雇员的集合。
+  - 实例（instance）：类的实例化体现；或者说，是类的一个成员。例如， Victoria 可以是 Employee 类的一个实例，表示一个特定的雇员个体。实例具有和其父类完全一致的属性。
+
+  javascript有基于原型的面向对象概念，并没有类和实例的区别它只有对象。
+
+  基于原型的语言具有所谓原型对象（prototypical object）的概念。原型对象可以作为一个模板，新对象可以从中获得原始的属性。任何对象都可以指定其自身的属性，既可以是创建时也可以在运行时创建。而且，任何对象都可以作为另一个对象的原型（prototype），从而允许后者共享前者的属性。
+
+  ![image](./object.png)
+
+### 4.5 把函数作为“第一等公民”
+
+  在C、C++、Java、C#中，函数都是作为一个二等公民存在，只能用语言的关键字声明一个函数然后调用它，如果需要把函数作为参数传给另一个函数，或是赋值给一个本地变量，又或是作为返回值，就需要通过函数指针(function pointer)、代理(delegate)等特殊的方式周折一番。
+
+  而在JavaScript世界中函数却是一等公民，它不仅拥有一切传统函数的使用方式（声明和调用），而且可以做到像简单值一样赋值、传参、返回，这样的函数也称之为第一级函数（[First-class Function](https://en.wikipedia.org/wiki/First-class_function)）。不仅如此，JavaScript中的函数还充当了类的构造函数的作用，同时又是一个Function类的实例(instance)。这样的多重身份让JavaScript的函数变得非常重要。
+
+  javascript把函数作为“第一等公民”使得javascript开发可以使用“函数式编程”范式。
+
+  关于函数式编程可以参考：
+  - 阮一峰：[函数式编程初探](http://www.ruanyifeng.com/blog/2012/04/functional_programming.html)
+  - Franklin Risby:[JS函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+
+## 5 javascript单线程、异步和event loop
+javascript的单线程和异步特性在编写javascript程序过程中是非常重要的概念。异步特性与函数式构成了javascript程序的主要风格。
+### 5.1javascript单线程
+JavaScript语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。
+
+JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？
+
+所以，为了避免复杂性，从一诞生，JavaScript就是单线程，这已经成了这门语言的核心特征，将来也不会改变。
+
+为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。
+### 5.2同步和异步
+一般而言，对程序的调用分为发出调用和得到结果两步，根据如何得到结果调用被分为两种形式。
+- 同步：就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回。也就是必须一件一件事做,等前一件做完了才能做下一件事.
+- 异步：当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过一系列的手段才最终拿到结果（状态、通知和回调等）。
+
+例子:[javascript异步](./asynchronous.html)
+
+### 5.3event loop
+JavaScript是单线程的，但javascript如何利用单线程来实现所谓的异步，其中有个很重要的概念：事件循环(Event Loop)。
+
+关于event loop，有不少文章从很深的角度讨论了，比如：
+- 阮一峰:[JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
+- 朴灵对阮一峰上篇文章的批注：[朴灵批注](http://blog.csdn.net/lin_credible/article/details/40143961):
+- [JavaScript 事件循环（译文JavaScript Event Loop）](https://segmentfault.com/a/1190000006811224?utm_source=tuicool&utm_medium=referral)
