@@ -152,12 +152,12 @@ JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，J
 - 同步：就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回。也就是必须一件一件事做,等前一件做完了才能做下一件事.
 - 异步：当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过一系列的手段才最终拿到结果（状态、通知和回调等）。
 
-例子:[javascript异步](./asynchronous.html)
+例子[https://fruitsandwich.github.io/webTraining/lession03/asynchronous.html](https://fruitsandwich.github.io/webTraining/lession03/asynchronous.html)
 
 ### 5.3event loop
 JavaScript是单线程的，但javascript如何利用单线程来实现所谓的异步，其中有个很重要的概念：事件循环(Event Loop)。
 
 关于event loop，有不少文章从很深的角度讨论了，比如：
 - 阮一峰:[JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
-- 朴灵对阮一峰上篇文章的批注：[朴灵批注](http://blog.csdn.net/lin_credible/article/details/40143961):
+- 朴灵对阮一峰上篇文章的批注：[朴灵批注](http://blog.csdn.net/lin_credible/article/details/40143961)
 - [JavaScript 事件循环（译文JavaScript Event Loop）](https://segmentfault.com/a/1190000006811224?utm_source=tuicool&utm_medium=referral)
