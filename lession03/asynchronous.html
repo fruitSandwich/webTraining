@@ -32,6 +32,19 @@
 <button onclick="invokeOpen()">打开百度</button>
 <button onclick="console.log('hello')">打印日志</button>
 
+
+<p>
+  这里有一个耗时操作，request一个比较大的文件。
+</p>
+
+<p>
+同步获取的情况下，页面会卡住。点击下面三个按钮是没反应的。只有同步操作完成之后点击的效果才会显现。
+</p>
+
+<p>
+异步操作时，页面操作没有影响。
+</p>
+
 <script>
 
     $(function () {
