@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41914e60-1331-4161-84de-078133ed93af" name="Default" comment="wer">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lession03/lession03.md" afterPath="$PROJECT_DIR$/lession03/lession03.md" />
-    </list>
+    <list default="true" id="41914e60-1331-4161-84de-078133ed93af" name="Default" comment="" />
     <ignored path="webTraining.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -53,8 +50,8 @@
         <entry file="file://$PROJECT_DIR$/lession03/lession03.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="555">
-                <caret line="156" column="17" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+              <first_editor relative-caret-position="255">
+                <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -260,7 +257,7 @@
       <workItem from="1479808387941" duration="2159000" />
       <workItem from="1479865321336" duration="4184000" />
       <workItem from="1480843407444" duration="4380000" />
-      <workItem from="1480903029591" duration="164000" />
+      <workItem from="1480903029591" duration="511000" />
     </task>
     <task id="LOCAL-00001" summary="add lession02">
       <created>1479885658934</created>
@@ -269,17 +266,24 @@
       <option name="project" value="LOCAL" />
       <updated>1479885658934</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="modify links">
+      <created>1480903209554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1480903209554</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23833000" />
+    <option name="totallyTimeSpent" value="24180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15961945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15961945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -311,7 +315,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add lession02" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lession02" />
+    <MESSAGE value="modify links" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify links" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -551,8 +556,8 @@
     <entry file="file://$PROJECT_DIR$/lession03/lession03.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="555">
-            <caret line="156" column="17" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+          <first_editor relative-caret-position="255">
+            <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
