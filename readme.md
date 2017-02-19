@@ -14,29 +14,12 @@
 - javascript和其他主流编程语言的区别
 - javascript单线程、异步和event loop
 
-## 4.javascript语法和标准库
-- JavaScript语法
-- JavaScript标准库
+## 4.[javascript语法和标准库](./lession04/lession04.md)
+- JavaScript基础语法
+- JavaScript数据类型
+- JavaScript函数
 
-## 5.javascript面向对象和函数式
-- JavaScript面向对象
-- JavaScript函数式
 
-## 6.javascript浏览器环境介绍
-- DOM模型
-- BOM、浏览器环境
-- Web API
-- jQuery
-
-## 7.React技术栈
-- React基本用法
-- React生态中常见的应用架构
-
-## 8.前端工程
-- 持续集成
-- 静态代码检查
-- 单元测试
-- 功能测试
 
 ## 参考教材：
 1. W3CSchool http://www.w3school.com.cn/

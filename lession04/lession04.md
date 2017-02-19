@@ -1,6 +1,5 @@
 # javascript语法和标准库
 
-
 ## 1.基础语法
 ### 1.1语句
 JavaScript的语法和Java类似，每个语句以;结束。但是，JavaScript并不强制要求在每个语句的结尾加;，JavaScript宿主引擎会自动在每个语句的结尾补上;。
@@ -342,14 +341,153 @@ for (var i in o) {
 ```
 
 
-## 3.数组
+### 2.4.数组
 
-- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
-- http://www.w3school.com.cn/jsref/jsref_obj_array.asp
+JavaScript的Array可以包含任意数据类型，并通过索引来访问每个元素。
+
+要取得Array的长度，直接访问length属性：
+
+```
+var arr = [1, 2, 3.14, 'Hello', null, true];
+arr.length; // 6
+```
+
+> 注意，直接给Array的length赋一个新的值会导致Array大小的变化：
+
+```
+var arr = [1, 2, 3];
+arr.length; // 3
+arr.length = 6;
+arr; // arr变为[1, 2, 3, undefined, undefined, undefined]
+arr.length = 2;
+arr; // arr变为[1, 2]
+```
+
+Array可以通过索引把对应的元素修改为新的值，因此，对Array的索引进行赋值会直接修改这个Array：
+
+```
+var arr = ['A', 'B', 'C'];
+arr[1] = 99;
+arr; // arr现在变为['A', 99, 'C']
+```
+
+>注意，如果通过索引赋值时，索引超过了范围，同样会引起Array大小的变化：
+
+```
+var arr = [1, 2, 3];
+arr[5] = 'x';
+arr; // arr变为[1, 2, 3, undefined, undefined, 'x']
+```
+
+大多数其他编程语言不允许直接改变数组的大小，越界访问索引会报错。然而，JavaScript的Array却不会有任何错误。在编写代码时，不建议直接修改Array的大小，访问索引时要确保索引不会越界。
+
+数组的遍历:
+
+```
+var colors = ['red', 'green', 'blue'];
+colors.forEach(function (item, index, array) {
+  console.log(item,index);
+});
+//或
+for(var i = 0;i<colors.length;i++){
+	console.log(colors[i]);
+}
+//因为Array是一种特殊的对象，一种键名为数字的对象，所以也可以用for...in来遍历数组
+for (var i in colors) {
+  console.log(colors[i]);
+}
+但for...in不仅会遍历数组所有的数字键，还会遍历非数字键
+colors.a = 123
+for (var i in colors) {
+  console.log(colors[i]);
+}
+//red
+//green
+//blue
+//123
+```
 
 
-## 4.函数
-### 4.1 声明和使用
+数组对象方法有两类，一类调用后会改变自身的值，一类调用后不改变自身返回一个新的数组。
+
+会改变自身的方法：
+
+Array.prototype.fill(value,start,end):将一个数组的所有元素从开始索引填充到具有静态值的结束索引。返回值：改变后的数组
+
+Array.prototype.push(element1, ..., elementN):将一个或多个元素添加到数组的末尾。返回值：数组的新长度。
+
+Array.prototype.pop():从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度。返回值：从数组中删除的元素; undefined 如果数组为空。
+
+Array.prototype.reverse():颠倒数组中元素的位置
+
+Array.prototype.splice(start, deleteCount, item1, item2, ...):通过删除现有元素和/或添加新元素来更改数组的内容。
+
+```
+var arr = [1,2,3,4,5,7,8]
+arr.splice(2,1)//[3]
+arr//[1, 2, 4, 5, 7, 8]
+arr.splice(2,2,'one','two')//[4, 5]
+arr//[1, 2, "one", "two", 7, 8]
+```
+
+Array.prototype.sort(compareFunction):对数组的元素进行排序，并返回数组
+
+```
+var arr = [{value:3,text:'hello'},{value:1,text:'world'},{value:2,text:'!'}]
+arr.forEach(function(item){
+	console.log(item)
+})
+//Object {value: 3, text: "hello"}
+//Object {value: 1, text: "world"}
+//Object {value: 2, text: "!"}
+arr.sort(function(a,b){
+	return a.value - b.value
+})
+//Object {value: 1, text: "world"}
+//Object {value: 2, text: "!"}
+//Object {value: 3, text: "hello"}
+```
+
+
+不会改变自身的方法:
+
+Array.prototype.concat():返回一个由当前数组和其它若干个数组或者若干个非数组值组合而成的新数组。
+
+```
+var arr1 = ["a", "b", "c"];
+var arr2 = ["d", "e", "f"];
+
+var arr3 = arr1.concat(arr2);
+```
+
+Array.prototype.includes(searchElement, fromIndex):用来判断当前数组是否包含某指定的值，如果是，则返回 true，否则返回 false。
+
+Array.prototype.join(separator):将数组（或一个类数组对象）的所有元素连接到一个字符串中。
+
+```
+var a = ['Wind', 'Rain', 'Fire'];
+
+a.join();
+// 默认为 ","
+// 'Wind,Rain,Fire'
+```
+
+Array.prototype.slice(begin,end):将数组的一部分浅拷贝, 返回到从开始到结束（不包括结束）选择的新数组对象。
+
+```
+var arr = [1,2,3,4,5]
+var sliced = arr.slice(1,3)
+arr//[1, 2, 3, 4, 5]
+sliced//[2, 3]
+```
+
+Array.prototype.indexOf():返回在数组中可以找到给定元素的第一个索引，如果不存在，则返回-1。
+
+
+
+
+## 3.函数
+### 3.1 声明和使用
 JavaScript有三种方法，可以声明一个函数。
 
 #### function命令
@@ -406,7 +544,7 @@ f() // 2
 
 >很多时候如果在html中引用了多个script，而script中含有同名函数，那么前面的函数效果就会被覆盖而导致不可预测的效果，所以html中script引用的顺序非常重要。但尽可能的要避免使用全局变量。
 
-### 4.2 函数名提升
+### 3.2 函数名提升
 
 JavaScript引擎将函数名视同变量名，所以采用function命令声明函数时，整个函数会像变量声明一样，被提升到代码头部。所以，下面的代码不会报错。
 ```
@@ -445,7 +583,7 @@ function f() {
 f() // 1
 ```
 
-### 4.3第一等公民
+### 3.3第一等公民
 JavaScript语言将函数看作一种值，与其它值（数值、字符串、布尔值等等）地位相同。凡是可以使用值的地方，就能使用函数。比如，可以把函数赋值给变量和对象的属性，也可以当作参数传入其他函数，或者作为函数的结果返回。函数只是一个可以执行的值，此外并无特殊之处。
 
 由于函数与其他数据类型地位平等，所以在JavaScript语言中又称函数为第一等公民。
@@ -466,7 +604,7 @@ a(add)(1, 1)
 // 2
 ```
 
-### 4.4作用域
+### 3.4作用域
 作用域（scope）指的是变量存在的范围。Javascript只有两种作用域：一种是全局作用域，变量在整个程序中一直存在，所有地方都可以读取；另一种是函数作用域，变量只在函数内部存在。
 
 在函数外部声明的变量就是全局变量（global variable），它可以在函数内部读取。
@@ -570,7 +708,7 @@ f() // 1
 
 上面代码中，函数foo内部声明了一个函数bar，bar的作用域绑定foo。当我们在foo外部取出bar执行时，变量x指向的是foo内部的x，而不是foo外部的x。正是这种机制，构成了“闭包”现象。
 
-#### 4.5闭包
+#### 3.5闭包
 所谓“闭包”，指的是一个拥有许多变量和绑定了这些变量的环境的表达式（通常是一个函数）。
 
 ```
@@ -636,7 +774,7 @@ p1.getAge() // 25
 
 上面代码中，函数Person的内部变量_age，通过闭包getAge和setAge，变成了返回对象p1的私有变量。
 
-#### 4.5立即调用的函数表达式（IIFE）
+#### 3.5立即调用的函数表达式（IIFE）
 
 javascript提供了一种“创建一个匿名函数并立刻执行”的语法
 
