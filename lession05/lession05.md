@@ -107,4 +107,113 @@
 - 实现原理：引入控制反转和异步机制
 - 常见应用：图形用户界面；网络应用；服务器；操作系统；IoC框架；异步输入；DOM等
 
-## 3.JavaScript中的面向对象与函数式
+## 3.设计模式中的面向对象与函数式
+
+> 某些设计模式是一种涉及到的是函数和对象的转换，这种转换往往不是有必要的，仅仅是把一些函数式编程的概念强行转换成面向对象风格。所以这就带来更多的代码，更低的可读性而且维护起来更困难。实际上，这不仅仅是用对象把函数包装起来那么简单，你还必须得把这些松散的对象“粘起来”。相同的结果，如果用函数式编程实现更加简单。——https://www.voxxed.com/blog/2016/04/gang-four-patterns-functional-light-part-1/
+
+### 3.1策略（Strategy）模式
+有一个场景，一个处理文本的过程：输入，筛选，最后把结果转换并输出。换句话说需要两个行为：过滤文本，转换格式。如果过滤文本和转换格式的算法需要独立于客户的变化又可以互相替换，那么可以用策略模式。
+
+>策略模式：定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。
+
+使用面向对象范式：
+1. 定义一个接口，定义两个行为过滤文本和转换格式
+
+  ```
+  interface TextFormatter {
+     boolean filter(String text);
+     String format(String text);
+  }
+  ```
+
+2. 封装场景，封装用户怎样过滤和格式化文本
+
+  ```
+  public class TextEditor {
+      private final TextFormatter textFormatter;
+      public TextEditor(TextFormatter textFormatter) {
+          this.textFormatter = textFormatter;
+      }
+      public void publishText(String text) {
+          if (textFormatter.filter( text )) {
+             System.out.println( textFormatter.format( text ) );
+          }
+      }
+  }
+  ```
+
+3. 新增接口实现
+
+  ```
+  //实现一，接受任何文本，原样输出
+  public class PlainTextFormatter implements TextFormatter {
+      @Override
+      public boolean filter( String text ) {
+         return true;
+      }    
+      @Override
+      public String format( String text ) {        
+         return text;
+      }
+  }
+
+  //实现二，处理日志中的"ERROR"，如果发现”ERROR”就把文本转换成大写
+  public class ErrorTextFormatter implements TextFormatter {    @Override
+      public boolean filter( String text ) {        
+         return text.startsWith( "ERROR" );
+      }
+      @Override
+      public String format( String text ) {        
+         return text.toUpperCase();
+      }
+  }
+
+  //实现三，小于20个字符的文本变成小写
+  public class ShortTextFormatter implements TextFormatter {
+      @Override
+      public boolean filter( String text ) {       
+         return text.length() < 20;
+      }    
+      @Override
+      public String format( String text ) {       
+         return text.toLowerCase();
+      }
+  }
+  ```
+
+4. 使用整套模式
+  ```
+  TextEditor textEditor = new TextEditor( new PlainTextFormatter() );
+  textEditor.publishText( "ERROR - something bad happened" );
+  textEditor.publishText( "DEBUG - I'm here" );
+
+  TextEditor errorEditor = new TextEditor( new ErrorTextFormatter() );
+  errorEditor.publishText( "ERROR - something bad happened" );
+  errorEditor.publishText( "DEBUG - I'm here" );
+  ```
+
+策略模式将策略或算法封装到类通过传递不同类的实例达到动态调用不同算法的目的。使用函数式范式直接传递实现算法的函数会更加简洁：
+1. 定义使用场景
+  ```
+  function publishText(text, filter, format) {
+    if (filter(text)) {
+      console.log(format(text))
+    }
+  }
+  ```
+2. 封装过滤文本和转换函数
+  ```
+  const textUtil = {
+    acceptAll: s => true,
+    noFormatting: s => s,
+    acceptError: s => s.startsWith('ERROR'),
+    formatError: s => s.toUpperCase()
+  }
+  ```
+3. 使用模式
+
+  ```
+  publishText("DEBUG - I'm here", textUtil.acceptAll, textUtil.noFormatting);
+
+  publishText("ERROR - something bad happened", textUtil.acceptError, textUtil.formatError);
+  ```
