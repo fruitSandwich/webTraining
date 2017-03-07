@@ -193,7 +193,9 @@
   ```
 
 策略模式将策略或算法封装到类通过传递不同类的实例达到动态调用不同算法的目的。使用函数式范式直接传递实现算法的函数会更加简洁：
+
 1. 定义使用场景
+
   ```
   function publishText(text, filter, format) {
     if (filter(text)) {
@@ -202,6 +204,7 @@
   }
   ```
 2. 封装过滤文本和转换函数
+
   ```
   const textUtil = {
     acceptAll: s => true,
@@ -210,6 +213,7 @@
     formatError: s => s.toUpperCase()
   }
   ```
+
 3. 使用模式
 
   ```
