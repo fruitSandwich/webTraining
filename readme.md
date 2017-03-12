@@ -19,6 +19,11 @@
 - JavaScript数据类型
 - JavaScript函数
 
+## 5.[javascript面向对象与函数式](./lession05/lession05.md)
+- javascript对象的生成
+- this与prototype
+- es6/es2015 中的Class
+- 编程范式与设计模式
 
 
 ## 参考教材：
