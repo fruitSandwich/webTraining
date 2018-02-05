@@ -319,4 +319,4 @@ class Point {
 前面我们说到JavaScript的“编程风格”是函数式编程和面向对象编程的一种混合体。
 
 函数式和面向对象是两种不同的编程范式，而不同的编程范式有着不同的世界观，在编程过程中会引导人民带着特有的倾向和思路去分析和解决问题。
-<a href='http://blog.fruitsandwich.cc/pardigm-oop-functional/'>编程范式与设计模式</a>
+<a href='http://fruitsandwich.github.io/pardigm-oop-functional/'>编程范式与设计模式</a>
