@@ -1,6 +1,6 @@
 # 前端历史趋势简介以及开发环境工具的准备
 ## 1.历史和趋势
-- http://note.youdao.com/noteshare?id=4d777921f1499cebe7b3ee52b886193f
+- http://fruitsandwich.github.io/note/2016/前端发展史和生态圈/前端发展史和生态圈
 - https://github.com/ruanyf/jstraining/blob/master/docs/history.md
 
 ## 2.环境工具准备
