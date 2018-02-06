@@ -1,0 +1,78 @@
+<html>
+
+<head>
+
+    <script src="./vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        addTodo:
+        <input @change="addItem" v-model="currentTodo">
+        <br> todolist:
+        <ol>
+            <li v-for="(item,index) in todolist" v-if="!item.done">
+                <input @change="toggle(index)" type="checkbox">
+                <input v-show="item.edit" @change="editOver(index)" v-model="item.str">
+                <label v-show="!item.edit" @click="edit(index)">{{item.str}}</label>
+                <a href="#" @click="removeItem(index)">delete</a>
+            </li>
+        </ol>
+        donelist:
+        <ol>
+            <li v-for="(item,index) in todolist" v-if="item.done">
+                <input @change="toggle(index)" type="checkbox"> {{item.str}}
+                <a href="#" @click="removeItem(index)">delete</a>
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    currentTodo: '',
+                    todolist: []
+                }
+            },
+            created() {
+                this.todolist = localStorage['todolist'] ? JSON.parse(localStorage['todolist']) : []
+            },
+            watch: {
+                todolist: {
+                    deep: true,
+                    handler: function (newVal) {
+                        localStorage['todolist'] = JSON.stringify(newVal)
+                    }
+                }
+            },
+            methods: {
+                addItem() {
+                    this.todolist.push({
+                        str: this.currentTodo,
+                        edit: false,
+                        done: false
+                    })
+                    this.currentTodo = '';
+                },
+                toggle(index) {
+                    this.todolist[index].done = !this.todolist[index].done
+                },
+                removeItem(index) {
+                    this.todolist.splice(index, 1)
+                },
+                edit(index) {
+                    this.todolist[index].edit = true;
+                },
+                editOver(index) {
+                    this.todolist[index].edit = false;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

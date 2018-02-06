@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <title>todolist jquery</title>
+    <script src="./jquery.min.js"></script>
+</head>
+
+<body>
+    addTodolist:
+    <input id="addtodolist" type="text">
+    <br> todolist:
+    <ol id="todolist"></ol>
+
+    donelist:
+    <ol id="donelist">
+
+    </ol>
+
+
+    <script>
+        var todolist = loadFromLocal();
+
+        load();
+
+        $("#addtodolist").on('keyup', function (event) {
+            if (event.key === 'Enter') {
+                var todo = $("#addtodolist").val();
+                console.log(todo)
+                todolist.push({
+                    str: todo,
+                    done: false
+                });
+                $("#addtodolist").val('');
+                load();
+                save();
+            }
+        })
+
+        function load() {
+            var todolistStr = '',
+                donelistStr = '';
+            for (var i = 0; i < todolist.length; i++) {
+                var todoItem = todolist[i];
+                if (!todoItem.done) {
+                    todolistStr += "<li id='li" + i + "'>"
+                        + "<input onchange='toggle(" + i + ")' type='checkbox'>"
+                        + "<label onclick='edit(" + i + ")'>" + todoItem.str + "</label>"
+                        + "<a href='#' onclick='removeTodo(" + i + ")'>remove</a>"
+                        + "</li>"
+                } else {
+                    donelistStr += "<li>"
+                        + "<input onchange='toggle(" + i + ")' type='checkbox'>"
+                        + "<label>" + todoItem.str + "</label>"
+                        + "<a href='#' onclick='removeTodo(" + i + ")'>remove</a>"
+                        + "</li>"
+                }
+            }
+            $("#todolist").empty();
+            $("#todolist").append(todolistStr);
+
+            $("#donelist").empty();
+            $("#donelist").append(donelistStr)
+        }
+
+        function toggle(index) {
+            todolist[index].done = !todolist[index].done;
+            save();
+            load();
+        }
+
+        function removeTodo(index) {
+            todolist.splice(index, 1);
+            save();
+            load();
+        }
+
+        function edit(index) {
+            var li = $("#li" + index);
+            li.empty();
+            var inputStr = "<input onchange='toggle(" + index + ")' type='checkbox'>"
+                + "<input id='' onchange='editFinish(" + index + ",this)' type='text' value='" + todolist[index].str + "'>"
+                + "<a href='#' onclick='removeTodo(" + index + ")'>remove</a>"
+            li.append(inputStr);
+
+        }
+
+        function editFinish(index, dom) {
+            todolist[index].str = dom.value;
+            save();
+            load();
+        }
+
+
+        function save() {
+            localStorage['todolist'] = JSON.stringify(todolist);
+        }
+
+        function loadFromLocal() {
+            var temp = localStorage['todolist'] ? JSON.parse(localStorage['todolist']) : []
+            return temp
+        }
+
+    </script>
+
+</body>
+
+</html>
