@@ -49,11 +49,196 @@ var person = {name: 'Bart',age: 12};
 - 可以清楚域名下本地缓存，并清空所有todolist项
 
 ### 3.1 jquery实现
+效果：[todolist](./jquery/index.html)
 ```
+<html>
 
+<head>
+    <title>todolist jquery</title>
+    <script src="./jquery.min.js"></script>
+</head>
+
+<body>
+    addTodolist:
+    <input id="addtodolist" type="text">
+    <br> todolist:
+    <ol id="todolist"></ol>
+
+    donelist:
+    <ol id="donelist">
+
+    </ol>
+
+
+    <script>
+        var todolist = loadFromLocal();
+
+        load();
+
+        $("#addtodolist").on('keyup', function (event) {
+            if (event.key === 'Enter') {
+                var todo = $("#addtodolist").val();
+                console.log(todo)
+                todolist.push({
+                    str: todo,
+                    done: false
+                });
+                $("#addtodolist").val('');
+                load();
+                save();
+            }
+        })
+
+        function load() {
+            var todolistStr = '',
+                donelistStr = '';
+            for (var i = 0; i < todolist.length; i++) {
+                var todoItem = todolist[i];
+                if (!todoItem.done) {
+                    todolistStr += "<li id='li" + i + "'>"
+                        + "<input onchange='toggle(" + i + ")' type='checkbox'>"
+                        + "<label onclick='edit(" + i + ")'>" + todoItem.str + "</label>"
+                        + "<a href='#' onclick='removeTodo(" + i + ")'>remove</a>"
+                        + "</li>"
+                } else {
+                    donelistStr += "<li>"
+                        + "<input onchange='toggle(" + i + ")' type='checkbox'>"
+                        + "<label>" + todoItem.str + "</label>"
+                        + "<a href='#' onclick='removeTodo(" + i + ")'>remove</a>"
+                        + "</li>"
+                }
+            }
+            $("#todolist").empty();
+            $("#todolist").append(todolistStr);
+
+            $("#donelist").empty();
+            $("#donelist").append(donelistStr)
+        }
+
+        function toggle(index) {
+            todolist[index].done = !todolist[index].done;
+            save();
+            load();
+        }
+
+        function removeTodo(index) {
+            todolist.splice(index, 1);
+            save();
+            load();
+        }
+
+        function edit(index) {
+            var li = $("#li" + index);
+            li.empty();
+            var inputStr = "<input onchange='toggle(" + index + ")' type='checkbox'>"
+                + "<input id='' onchange='editFinish(" + index + ",this)' type='text' value='" + todolist[index].str + "'>"
+                + "<a href='#' onclick='removeTodo(" + index + ")'>remove</a>"
+            li.append(inputStr);
+
+        }
+
+        function editFinish(index, dom) {
+            todolist[index].str = dom.value;
+            save();
+            load();
+        }
+
+
+        function save() {
+            localStorage['todolist'] = JSON.stringify(todolist);
+        }
+
+        function loadFromLocal() {
+            var temp = localStorage['todolist'] ? JSON.parse(localStorage['todolist']) : []
+            return temp
+        }
+
+    </script>
+
+</body>
+
+</html>
 ```
 
 ### 3.2 vue实现
+效果：[todolist](./vue/index.html)
 ```
+<html>
 
+<head>
+
+    <script src="./vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        addTodo:
+        <input @change="addItem" v-model="currentTodo">
+        <br> todolist:
+        <ol>
+            <li v-for="(item,index) in todolist" v-if="!item.done">
+                <input @change="toggle(index)" type="checkbox">
+                <input v-show="item.edit" @change="editOver(index)" v-model="item.str">
+                <label v-show="!item.edit" @click="edit(index)">{{item.str}}</label>
+                <a href="#" @click="removeItem(index)">delete</a>
+            </li>
+        </ol>
+        donelist:
+        <ol>
+            <li v-for="(item,index) in todolist" v-if="item.done">
+                <input @change="toggle(index)" type="checkbox"> {{item.str}}
+                <a href="#" @click="removeItem(index)">delete</a>
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    currentTodo: '',
+                    todolist: []
+                }
+            },
+            created() {
+                this.todolist = localStorage['todolist'] ? JSON.parse(localStorage['todolist']) : []
+            },
+            watch: {
+                todolist: {
+                    deep: true,
+                    handler: function (newVal) {
+                        localStorage['todolist'] = JSON.stringify(newVal)
+                    }
+                }
+            },
+            methods: {
+                addItem() {
+                    this.todolist.push({
+                        str: this.currentTodo,
+                        edit: false,
+                        done: false
+                    })
+                    this.currentTodo = '';
+                },
+                toggle(index) {
+                    this.todolist[index].done = !this.todolist[index].done
+                },
+                removeItem(index) {
+                    this.todolist.splice(index, 1)
+                },
+                edit(index) {
+                    this.todolist[index].edit = true;
+                },
+                editOver(index) {
+                    this.todolist[index].edit = false;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
 ```
